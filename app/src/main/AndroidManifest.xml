@@ -16,6 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".widget.DiabetesDiaryContentProvider"
+            android:authorities="com.p0kadevil.diabetesdiary.DiabetesDiaryContentProvider.entries" />
+
+        <receiver
+            android:name="com.p0kadevil.diabetesdiary.widget.DiabetesDiaryWidgetProvider"
+            android:label="@string/widget_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidgetproviderinfo" />
+        </receiver>
+
     </application>
 
 </manifest>

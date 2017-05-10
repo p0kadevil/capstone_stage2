@@ -9,6 +9,8 @@ import com.p0kadevil.diabetesdiary.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String PREF_BE_FACTOR = "be_factor_pref";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

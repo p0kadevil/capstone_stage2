@@ -3,4 +3,18 @@
     <string name="new_entry">New entry</string>
     <string name="diary">Diary</string>
     <string name="export">Export</string>
+    <string name="blood_value">Blood value</string>
+    <string name="be">BE</string>
+    <string name="insulin">Insulin</string>
+    <string name="oclock">o\'clock</string>
+    <string name="error_blood_value">Please enter your measured blood value.</string>
+    <string name="error_be">Please enter the BE of your meal.</string>
+    <string name="error_insulin">Please enter the units of insulin, you will put.</string>
+    <string name="insert_entry_success">The entry was added to the diary successfully.</string>
+    <string name="widget_name">Average blood value</string>
+    <string name="avg">avg</string>
+    <string name="general">General</string>
+    <string name="be_factor">BE-Factor:</string>
+    <string name="be_factor_summary">You should provide your personal BE-Factor here.</string>
+    <string name="insulin_recommendation">Recommendation of Insulin: </string>
 </resources>

@@ -1,0 +1,11 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/general">
+        <EditTextPreference
+            android:key="be_factor_pref"
+            android:title="@string/be_factor"
+            android:summary="@string/be_factor_summary"
+            android:inputType="numberSigned|numberDecimal"/>
+    </PreferenceCategory>
+</PreferenceScreen>

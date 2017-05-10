@@ -3,4 +3,18 @@
     <string name="new_entry">Neuer Eintrag</string>
     <string name="diary">Tagebuch</string>
     <string name="export">Export</string>
+    <string name="blood_value">Blutzucker</string>
+    <string name="be">BE</string>
+    <string name="insulin">Insulin</string>
+    <string name="oclock">Uhr</string>
+    <string name="error_blood_value">Bitte gib deinen Blutzucker-Wert ein.</string>
+    <string name="error_be">Bitte gib die Broteinheiten deiner Mahlzeit ein.</string>
+    <string name="error_insulin">Bitte gib die Einheiten an Insulin ein, die du spritzen wirst.</string>
+    <string name="insert_entry_success">Der Eintrag wurde dem Tagebuch hinzugefügt.</string>
+    <string name="widget_name">Durschnitts-Blutzucker</string>
+    <string name="avg">avg</string>
+    <string name="general">Allgemein</string>
+    <string name="be_factor">BE-Faktor:</string>
+    <string name="be_factor_summary">Bitte hinterlege hier deinen persönlichen BE-Faktor.</string>
+    <string name="insulin_recommendation">Spritzempfehlung: </string>
 </resources>

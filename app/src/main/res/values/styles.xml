@@ -22,4 +22,13 @@
         <item name="android:layout_marginTop">@dimen/home_button_margin</item>
     </style>
 
+    <style name="NewEntryEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/et_margin</item>
+        <item name="android:layout_marginRight">@dimen/et_margin</item>
+        <item name="android:layout_marginStart">@dimen/et_margin</item>
+        <item name="android:layout_marginEnd">@dimen/et_margin</item>
+    </style>
+
 </resources>

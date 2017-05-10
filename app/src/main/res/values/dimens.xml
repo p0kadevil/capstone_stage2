@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="default_text_size">14dp</dimen>
+    <dimen name="default_text_size">14sp</dimen>
+    <dimen name="default_text_size_plus_1">16sp</dimen>
+    <dimen name="default_text_size_plus_2">18sp</dimen>
+    <dimen name="default_text_size_plus_3">20sp</dimen>
     <dimen name="button_min_width">240dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="home_button_margin">10dp</dimen>
+    <dimen name="et_margin">10dp</dimen>
+    <dimen name="et_be_width">100dp</dimen>
+    <dimen name="widget_min_height">44dp</dimen>
+    <dimen name="widget_min_width">88dp</dimen>
 </resources>
