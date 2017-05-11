@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.p0kadevil.diabetesdiary.R;
+import com.p0kadevil.diabetesdiary.db.DiabetesDbContract;
 import com.p0kadevil.diabetesdiary.db.DiabetesDbContract.DiaryEntry;
 import com.p0kadevil.diabetesdiary.db.DiabetesDbHelper;
 
@@ -40,26 +41,7 @@ public class DiaryFragment extends ListFragment {
 
     private void requestCursor()
     {
-        String[] projection = {
-                DiaryEntry._ID,
-                DiaryEntry.COLUMN_NAME_DATE,
-                DiaryEntry.COLUMN_NAME_BLOOD,
-                DiaryEntry.COLUMN_NAME_BE,
-                DiaryEntry.COLUMN_NAME_INSULIN
-        };
-
-        DiabetesDbHelper dbHelper = new DiabetesDbHelper(getContext());
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-        cursor = db.query(
-                DiaryEntry.TABLE_NAME,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                DiaryEntry.COLUMN_NAME_DATE + " ASC"
-        );
+        cursor = DiabetesDbContract.getAllEntries(getContext());
     }
 
     private class EntrySectionAdapter extends SectionCursorAdapter{

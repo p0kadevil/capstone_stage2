@@ -18,4 +18,10 @@
     <string name="be_factor">BE-Factor:</string>
     <string name="be_factor_summary">You should provide your personal BE-Factor here.</string>
     <string name="insulin_recommendation">Recommendation of Insulin: </string>
+    <string name="error_pdf">An error occured while creating the PDF file.</string>
+    <string name="need_access_external_storage">For creating the PDF file, the app needs access to the external memory.</string>
+    <string name="export_success_need_pdf_viewer">The export was successful (/sdcard/documents/diabetes_diary.pdf).\n\nPlease install a PDF-Viewer (e.g. Adobe Reader), to show the PDF.</string>
+    <string name="export_success">The export was successful (/sdcard/documents/diabetes_diary.pdf).</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>

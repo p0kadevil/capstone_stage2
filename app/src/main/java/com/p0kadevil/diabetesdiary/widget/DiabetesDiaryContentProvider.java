@@ -36,26 +36,7 @@ public class DiabetesDiaryContentProvider extends ContentProvider {
 
         if (uriMatcher.match(uri) == ENTRIES) {
 
-            DiabetesDbHelper dbHelper = new DiabetesDbHelper(getContext());
-            SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-            String[] projection = {
-                    DiabetesDbContract.DiaryEntry._ID,
-                    DiabetesDbContract.DiaryEntry.COLUMN_NAME_DATE,
-                    DiabetesDbContract.DiaryEntry.COLUMN_NAME_BLOOD,
-                    DiabetesDbContract.DiaryEntry.COLUMN_NAME_BE,
-                    DiabetesDbContract.DiaryEntry.COLUMN_NAME_INSULIN
-            };
-
-           return db.query(
-                    DiabetesDbContract.DiaryEntry.TABLE_NAME,
-                    projection,
-                    null,
-                    null,
-                    null,
-                    null,
-                    DiabetesDbContract.DiaryEntry.COLUMN_NAME_DATE + " ASC"
-            );
+            return DiabetesDbContract.getAllEntries(getContext());
         }
 
         return null;

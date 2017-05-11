@@ -18,4 +18,10 @@
     <string name="be_factor">BE-Faktor:</string>
     <string name="be_factor_summary">Bitte hinterlege hier deinen persönlichen BE-Faktor.</string>
     <string name="insulin_recommendation">Spritzempfehlung: </string>
+    <string name="error_pdf">Es ist ein Fehler beim Erstellen des PDF aufgetreten.</string>
+    <string name="need_access_external_storage">Um das PDF zu exportieren benötigt die App Zugriff auf den externen Speicher.</string>
+    <string name="export_success_need_pdf_viewer">Der Export war erfolgreich (/sdcard/documents/diabetes_diary.pdf).\n\nBitte installiere einen PDF-Viewer (z.B. Adobe Reader), damit Sie das PDF anzeigen können.</string>
+    <string name="export_success">Der Export war erfolgreich (/sdcard/documents/diabetes_diary.pdf).</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
 </resources>
