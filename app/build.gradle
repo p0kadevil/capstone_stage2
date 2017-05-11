@@ -28,5 +28,8 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.itextpdf:itextg:5.5.10'
     compile 'com.github.monxalo:android-section-adapter:1.0.1@jar'
+    compile 'com.google.firebase:firebase-core:10.0.1'
+    compile 'com.google.firebase:firebase-ads:10.0.1'
     testCompile 'junit:junit:4.12'
 }
+apply plugin: 'com.google.gms.google-services'

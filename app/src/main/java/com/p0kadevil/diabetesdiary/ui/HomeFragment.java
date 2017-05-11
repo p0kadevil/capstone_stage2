@@ -8,10 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.p0kadevil.diabetesdiary.R;
 
 
 public class HomeFragment extends Fragment {
+
+    private AdView mAdView;
 
     @Nullable
     @Override
@@ -19,6 +24,10 @@ public class HomeFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        mAdView = (AdView) view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         view.findViewById(R.id.btn_newEntry).setOnClickListener(new View.OnClickListener() {
             @Override
