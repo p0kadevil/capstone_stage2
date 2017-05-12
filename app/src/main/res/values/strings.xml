@@ -24,4 +24,6 @@
     <string name="export_success">The export was successful (/sdcard/documents/diabetes_diary.pdf).</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="content_desc_fab_home">Preferences</string>
+    <string name="content_desc_fab_new_entry">Okay</string>
 </resources>

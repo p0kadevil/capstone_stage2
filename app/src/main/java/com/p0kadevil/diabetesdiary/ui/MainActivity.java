@@ -23,9 +23,13 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, null);
 
-        Fragment newFragment = new HomeFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fl_container, newFragment);
-        transaction.commit();
+        if(getSupportFragmentManager().getFragments() == null ||
+                getSupportFragmentManager().getFragments().size() == 0)
+        {
+            Fragment newFragment = new HomeFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fl_container, newFragment);
+            transaction.commit();
+        }
     }
 }
