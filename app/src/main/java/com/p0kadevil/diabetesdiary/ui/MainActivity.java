@@ -32,4 +32,22 @@ public class MainActivity extends AppCompatActivity {
             transaction.commit();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+
+        for(Fragment fragment : getSupportFragmentManager().getFragments())
+        {
+            if(fragment instanceof HomeFragment)
+            {
+                if(((HomeFragment)fragment).webViewVisible())
+                {
+                    ((HomeFragment)fragment).setWebViewVisible(false);
+                    return;
+                }
+            }
+        }
+
+        super.onBackPressed();
+    }
 }

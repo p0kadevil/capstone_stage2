@@ -1,4 +1,5 @@
 <resources>
+    <string name="loading">Loading&#8230;</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="app_name">DiabetesDiary</string>
     <string name="new_entry">New entry</string>
@@ -26,4 +27,6 @@
     <string name="cancel">Cancel</string>
     <string name="content_desc_fab_home">Preferences</string>
     <string name="content_desc_fab_new_entry">Okay</string>
+    <string name="diabetes_info">Diabetes - Info</string>
+    <string name="wikipedia_url">https://en.wikipedia.org/w/api.php?format=json&amp;action=parse&amp;page=Diabetes%20mellitus&amp;prop=text&amp;section=0</string>
 </resources>

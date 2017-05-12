@@ -1,11 +1,13 @@
 package com.p0kadevil.diabetesdiary.ui;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,23 +20,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.gson.Gson;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.p0kadevil.diabetesdiary.R;
 import com.p0kadevil.diabetesdiary.db.DiabetesDbContract;
+import com.p0kadevil.diabetesdiary.ws.WikipediaArticle;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 
 public class HomeFragment extends Fragment {
 
     final private int REQUEST_CODE_ASK_PERMISSIONS = 88;
+    private ProgressDialog progress;
+
+    private WikipediaArticle article;
+
+    private final String SAVED_INSTANCE_WV_VISIBILITY = "wv_visible";
+    private final String SAVED_INSTANCE_WIKIPEDIA_TEXT = "wikipedia_text";
 
     @Nullable
     @Override
@@ -103,6 +120,26 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        view.findViewById(R.id.btn_info).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            new WikipediaAsyncTask().execute();
+            }
+        });
+
+        if(savedInstanceState != null &&
+                savedInstanceState.containsKey(SAVED_INSTANCE_WV_VISIBILITY) &&
+                savedInstanceState.containsKey(SAVED_INSTANCE_WIKIPEDIA_TEXT))
+        {
+            if(savedInstanceState.getBoolean(SAVED_INSTANCE_WV_VISIBILITY))
+            {
+                view.findViewById(R.id.wv_wikipedia).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.fab_prefs).setVisibility(View.GONE);
+                ((WebView)view.findViewById(R.id.wv_wikipedia)).
+                        loadData(savedInstanceState.getString(SAVED_INSTANCE_WIKIPEDIA_TEXT), null, "UTF-8");
+            }
+        }
+
         return view;
     }
 
@@ -112,6 +149,15 @@ public class HomeFragment extends Fragment {
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().
                     setTitle(getString(R.string.app_name));
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBoolean(SAVED_INSTANCE_WV_VISIBILITY,
+                getView().findViewById(R.id.wv_wikipedia).getVisibility() == View.VISIBLE);
+        outState.putString(SAVED_INSTANCE_WIKIPEDIA_TEXT, article != null ? article.parse.text.text : null);
     }
 
     private void createPdfAndShow() throws Exception
@@ -257,6 +303,108 @@ public class HomeFragment extends Fragment {
         else
         {
             showAlertWithOK(getString(R.string.export_success_need_pdf_viewer));
+        }
+    }
+
+    public boolean webViewVisible()
+    {
+        return getView().findViewById(R.id.wv_wikipedia).getVisibility() == View.VISIBLE;
+    }
+
+    public void setWebViewVisible(boolean visible)
+    {
+        getView().findViewById(R.id.wv_wikipedia).setVisibility(visible ? View.VISIBLE : View.GONE);
+        getView().findViewById(R.id.fab_prefs).setVisibility(visible ? View.GONE : View.VISIBLE);
+    }
+
+    private void showProgressDialog()
+    {
+        progress = new ProgressDialog(getActivity());
+        progress.setTitle(getString(R.string.loading));
+        progress.show();
+    }
+
+    private class WikipediaAsyncTask extends AsyncTask<Void, Void, Void>
+    {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showProgressDialog();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            try
+            {
+                URL url = new URL(getString(R.string.wikipedia_url));
+                HttpURLConnection urlConnection = (HttpURLConnection) url
+                        .openConnection();
+
+                InputStream in = urlConnection.getInputStream();
+                String jsonResponse = readStream(in);
+
+                if(jsonResponse.length() > 0)
+                {
+                    article = new Gson().fromJson(jsonResponse, WikipediaArticle.class);
+                }
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            if (progress != null &&
+                    progress.isShowing())
+            {
+                progress.dismiss();
+            }
+
+            setWebViewVisible(true);
+            ((WebView)getView().findViewById(R.id.wv_wikipedia)).loadData(article.parse.text.text, "", "UTF-8");
+        }
+
+        private String readStream(InputStream in)
+        {
+            BufferedReader reader = null;
+            StringBuilder response = new StringBuilder();
+
+            try
+            {
+                reader = new BufferedReader(new InputStreamReader(in));
+                String line;
+
+                while ((line = reader.readLine()) != null)
+                {
+                    response.append(line);
+                }
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    try
+                    {
+                        reader.close();
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            return response.toString();
         }
     }
 }

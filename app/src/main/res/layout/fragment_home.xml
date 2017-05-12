@@ -17,7 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/adView">
         <Button
             android:id="@+id/btn_newEntry"
             style="@style/HomeButton"
@@ -30,6 +32,10 @@
             android:id="@+id/btn_export"
             style="@style/HomeButton"
             android:text="@string/export"/>
+        <Button
+            android:id="@+id/btn_info"
+            style="@style/HomeButton"
+            android:text="@string/diabetes_info"/>
     </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_prefs"
@@ -41,4 +47,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
+    <WebView
+        android:id="@+id/wv_wikipedia"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 </RelativeLayout>
