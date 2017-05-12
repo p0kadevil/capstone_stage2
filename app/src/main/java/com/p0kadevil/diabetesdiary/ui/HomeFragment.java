@@ -49,6 +49,7 @@ public class HomeFragment extends Fragment {
     private ProgressDialog progress;
 
     private WikipediaArticle article;
+    private WebView webView;
 
     private final String SAVED_INSTANCE_WV_VISIBILITY = "wv_visible";
     private final String SAVED_INSTANCE_WIKIPEDIA_TEXT = "wikipedia_text";
@@ -59,6 +60,8 @@ public class HomeFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        webView = (WebView) view.findViewById(R.id.wv_wikipedia);
 
         AdView mAdView = (AdView) view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -155,8 +158,7 @@ public class HomeFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putBoolean(SAVED_INSTANCE_WV_VISIBILITY,
-                getView().findViewById(R.id.wv_wikipedia).getVisibility() == View.VISIBLE);
+        outState.putBoolean(SAVED_INSTANCE_WV_VISIBILITY, webView.getVisibility() == View.VISIBLE);
         outState.putString(SAVED_INSTANCE_WIKIPEDIA_TEXT, article != null ? article.parse.text.text : null);
     }
 
